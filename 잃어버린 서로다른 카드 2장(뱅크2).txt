@@ -1,0 +1,17 @@
+# 잃어버린 카드 2장 찾기
+
+
+def solution(N):
+    dic = {}
+    answer = []
+    for i in range(len(N)):
+        dic[N[i]] = N.count(N[i])
+    print(dic)
+    for j in dic:
+        if dic.get(j) == 1: #dic은 인덱스가 안됨, dic의 키 j에 해당하는 값 구하기 => get(j)
+            answer.append(j)
+    print(answer)
+    return answer
+
+N = [1, 2, 3, 4, 4, 3, 2, 5]
+solution(N)
