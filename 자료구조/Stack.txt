@@ -1,0 +1,31 @@
+파이썬으로 스택 구현
+
+Stack :  후입선출(LIFO) , 입력되는 순서대로 쌓고 나중에 들어온 것부터 먼저 사용하는 구조
+보통 프로그램 수행할 때 사용. 주 프로그램에서 함수 A를 호출하면 주 프로그램 위에 함수 A가 쌓이고
+함수 A의 수행중에 함수 B가 호출되면 함수 A 위에 함수 B가 스택처럼 쌓이게 됨
+함수 B의 실행이 완료되면 함수 A가 실행되고, 함수 A의 실행이 완료되면 주 프로그램의 실행이 시작됨
+
+
+def stack():
+	stack = []
+
+	stack.append(1)  #stack.append() 요소 추가
+	stack.append(2)
+	stack.append(3)
+	stack.append(4)
+	stack.append(5)
+	print(stack)
+
+	while stack:
+		print(stack.pop())  #stack.pop() 요소 제거
+stack()
+
+
+
+<결과>
+[1, 2, 3, 4, 5]
+5
+4
+3
+2
+1

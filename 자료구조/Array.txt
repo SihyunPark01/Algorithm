@@ -1,0 +1,15 @@
+자바로 구현한 배열
+
+public class LinearList {
+	public static void main(String[] args){
+		int sale [] = new int [] {12, 45, 67, 34, 78, 92}; 
+
+		for (int i = 0; i < 6; i++){
+			System.out.println(sale[i]);
+
+12
+45
+67
+34
+78
+92
