@@ -1,0 +1,10 @@
+제네릭 ; 파라미터 타입이 나중에 지정되게 해서 재활용성을 높일 수 있는 프로그래밍 스타일
+
+< Java >
+
+public static<T, U> boolean are_equal(T a, U b) {
+	return a == b;
+}
+
+are_equal(10, 10.0)
+

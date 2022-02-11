@@ -1,0 +1,13 @@
+enumerate()
+
+순서가 있는 자료형(list, set, tuple)등을 인덱스를 포함한 enumerate 객체로 리턴함
+
+a = [1, 2, 3, 2, 45, 2, 5]
+list(enumerate(a))-> [(0,1), (1,2), (2,3), (3,4), (4,45), (5,2), (6,5)] 인덱스를 자동으로 부여
+
+a = [ 'a1', 'b2', 'c3' ]
+for i, v in enumerate(a):
+	print(i, v)
+
+
+
