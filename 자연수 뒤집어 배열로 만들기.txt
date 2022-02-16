@@ -1,0 +1,7 @@
+def solution(n):
+    answer = []
+    n = int(n)
+    a = reversed(list(str(n)))
+    answer = list(map(int, a))
+    return answer
+    

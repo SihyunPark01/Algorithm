@@ -1,0 +1,11 @@
+def solution(n):
+    answer = 0
+    n = int(n)
+    print(list(str(n)))
+    a = list(str(n))
+    
+    for i in range(len(a)):
+        answer += int(a[i])
+    print(answer)
+    
+    return answer
