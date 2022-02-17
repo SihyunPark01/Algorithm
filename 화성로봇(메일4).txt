@@ -1,0 +1,80 @@
+# 화성 로봇
+
+from collections import deque
+
+
+def solution(board, c):
+    table = [[9999 for _ in range(len(board[0]))] for _ in range(len(board))]  # 크기 9999의 board 초기화
+
+    for k in range(len(board)):
+        print(board[k])
+    for k in range(len(table)):
+        print(table[k])
+
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == 2:
+                start = [i, j]  # start 값 찾아줌
+            if board[i][j] == 3:
+                end = [i, j]
+    print(start, end)
+    table[start[0]][start[1]] = 0  #
+
+    for k in range(len(board)):
+        print(table[k])
+
+    answer = (bfs(start, end, table, board, c))
+    return answer
+
+
+def bfs(start, end, table, board, c): #출발지, 도착지, table(9999로 초기화한 지도) board(기존 지도) c(자원에 들어가는 비용), 매개변수
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]  # 상하좌우를 담아줌
+    x = start[0]
+    y = start[1]  # x,y  좌표 담아줌
+
+    n = len(board)  # 전체 지도 크기 : 너비가 y =     높이가 6 (세로)
+    m = len(board[0]) # board[0]은 10 (가로) x 는 너비
+
+    q = deque()  # 자료 형태 좌우로 뽑아지고, 좌우로 넣을 형태
+    q.append((x, y))
+
+    while q:  # 큐(deque)가 빌때까지
+        x, y = q.popleft() # x, y를 뽑아내고
+        for i in range(4): # 4방향으로 계산
+            nx = x + dx[i] # 0일때 왼쪽, 1일때 오른쪽, 2일때 아래로 한칸, 3일때 위로 한칸
+            ny = y + dy[i]
+
+            if nx >= n or ny >= m or nx < 0 or ny < 0:  # 좌표 범위를 넘어가면 무시때림
+                continue
+
+            if board[nx][ny] == 0 or board[nx][ny] == 3:    # 열린길로 가거나 도착지로 갈때
+                if table[nx][ny] > table[x][y] + 1:             # 되돌아가기 방지용 nx, ny (다음 좌표에 있는 값이 지금 좌표+1(한칸이동에너지1이니까 1더해줌)보다 클 때)
+                    table[nx][ny] = table[x][y] + 1         # 다음좌표는 지금좌표 + 1 한 값이 됨
+                    q.append((nx, ny))
+            elif board[nx][ny] == 1:                        # 장애물이 있을 때
+                if table[nx][ny] > table[x][y] + 1 + c:     # 위랑 똑같고 장애물 부수는 비용 c만 더해주면 됨
+                    table[nx][ny] = table[x][y] + 1 + c
+                    q.append((nx, ny))                      # 부수고 난 좌표 담아주기
+    for k in range(len(board)):
+        print(table[k])                                     # 최소 값 담겨있음
+    return table[end[0]][end[1]]                            # end의 좌표에 해당하는 값 리턴
+
+
+
+board = [[0, 0, 0, 0, 2, 0, 0, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+         [0, 0, 1, 1, 1, 1, 1, 0, 1, 0], [0, 0, 1, 1, 1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 3, 0, 0, 0, 1, 0]]
+c = 1
+solution(board, c)
+
+
+
+
+
+
+
+
+
+
+
+
